@@ -1,3 +1,4 @@
-# Helm chart for deploying application on the CADS infrastructure
+# Deploy applications on CADS infrastructure
 
-More instructions to follow
+First upload application as a Docker Image, then add a values file
+
