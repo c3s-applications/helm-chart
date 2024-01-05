@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.org/proxy-buffer-size: 128K
+    nginx.org/proxy-buffers: 4 256K
+    nginx.org/proxy-busy-buffers-size: 256K
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.ingress.hostname }}
+      secretName: star.copernicus-climate.eu
+  rules:
+    - host: {{ .Values.ingress.hostname }}
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            path: {{ .Values.ingress.path }}(.*)
+            backend:
+              service:
+                name: {{ .Values.name }}
+                port:
+                  number: 80
+  ingressClassName: nginx
+
