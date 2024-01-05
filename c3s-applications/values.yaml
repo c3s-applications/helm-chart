@@ -1,0 +1,17 @@
+# Name of application
+name: hello-world
+# Values used by deployment:
+deployment:
+  # Image name
+  image: eccr.ecmwf.int/c3s-applications/app-hello-world
+  # Tag
+  tag: latest
+  # Port that the app is running on:
+  port: 80
+# Values used for ingress control
+ingress:
+  # DNS to use for application
+  hostname: ecds-dev.copernicus-climate.eu
+  # Path to application
+  path: /c3s-apps/hello-world/
+  
