@@ -16,6 +16,8 @@ To create a package for the helm chart use the following command:
 helm package single-pod-application
 ```
 
+This will create a .tgz file locally. You must then upload the .tgz file to [Harbor using the web-interface](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/managing-helm-charts/). The command line interface is not ideal, and this is not a frequently run command to justify programatic updates.
+
 
 
 ## Harbor
