@@ -1,11 +1,13 @@
 # Name of application
-name: hello-world
+name: hello-world # Name of application
 deployment:
-  image: eccr.ecmwf.int/c3s-applications/app-hello-world
-  tag: latest
-  port: 8501
+  image: eccr.ecmwf.int/c3s-applications/hello-world  # image for application
+  tag: dev-latest  # image tag to use (this )
+  port: 80  # Port exposed by the application
 # Values used for ingress control
 ingress:
-  hostname: ecds-dev.copernicus-climate.eu
+  # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
+  hostname: ecds-dev.copernicus-climate.eu  
+  # Path to the application, this must be included in the env when building a JS application
   path: /c3s-apps/hello-world/
   
