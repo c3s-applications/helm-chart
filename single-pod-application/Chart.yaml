@@ -1,6 +1,6 @@
 apiVersion: v2
-name: c3s-applications
-description: A Helm chart for deploying applications on CADS infrastructure
+name: single-pod-application
+description: A Helm chart for deploying a single pod application on CADS infrastructure
 
 # A chart can be either an 'application' or a 'library' chart.
 #

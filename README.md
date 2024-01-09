@@ -1,6 +1,22 @@
 # Deploy applications on CADS infrastructure
 
-First upload application as a Docker Image, then add a values file
+This repository is for storing Helm charts for deploying applications. The following instructions are in the context for a simple application chart which requires just a single pod type (n replicas), a single service and a single ingress.
+
+
+## Create a helm chart
+
+Use the `single-pod-application` as a template to start. Add any additional resources needed to the template, with values to be modified and deplopyment included in the values.yaml.
+
+
+## Package helm chart
+
+To create a package for the helm chart use the following command:
+
+```
+helm package single-pod-application
+```
+
+
 
 ## Harbor
 
@@ -16,6 +32,6 @@ helm repo add c3s-applications https://eccr.ecmwf.int/chartrepo/c3s-applications
 You can now install an app with this Chart with your own values as:
 
 ```
-helm install c3s-applications/c3s-applications --values path/to/values.yaml
+helm install c3s-applications/single-pod-application --values path/to/values.yaml
 ```
 
