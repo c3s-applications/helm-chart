@@ -4,6 +4,7 @@ deployment:
   image: eccr.ecmwf.int/c3s-applications/hello-world  # image for application
   tag: dev-latest  # image tag to use (this )
   port: 80  # Port exposed by the application
+  replicas: 1
 # Values used for ingress control
 ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
