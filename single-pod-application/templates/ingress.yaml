@@ -11,7 +11,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.hostname }}
-      secretName: star.copernicus-climate.eu
+      secretName: {{ .Values.ingress.secretName }}
   rules:
     - host: {{ .Values.ingress.hostname }}
       http:
