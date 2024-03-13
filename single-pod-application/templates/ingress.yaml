@@ -23,5 +23,5 @@ spec:
                 name: {{ .Values.name }}
                 port:
                   number: 80
-  ingressClassName: nginx
+  ingressClassName: {{ .values.ingress.ingressclass }}
 
