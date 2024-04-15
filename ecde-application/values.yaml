@@ -1,16 +1,18 @@
 # Name of application
-name: hello-world # Name of application
+name: ecde # Name of application
 deployment:
-  image: eccr.ecmwf.int/c3s-applications/hello-world  # image for application
-  tag: dev-latest  # image tag to use (this )
+  image: eccr.ecmwf.int/c3s-applications/ecde  # image for application
+  tag: latest  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
+  env:
+    wms-server: http://ecde-dev.copernicus-climate.eu/ecde-wms
 # Values used for ingress control
 ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev.copernicus-climate.eu  
   # Path to the application, this must be included in the env when building a JS application
-  path: /c3s-apps/hello-world/
+  path: /c3s-apps/ecde/
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
   storageclass: nginx

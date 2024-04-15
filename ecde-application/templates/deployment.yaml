@@ -17,6 +17,8 @@ spec:
           image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
           ports:
             - containerPort: {{ .Values.deployment.port }}
-          # env:
+          env:
+          - name: WMS_SERVER
+            value: {{ .Values.deployment.env.wms-server }}
           #   - name: PUBLIC_URL
           #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/
