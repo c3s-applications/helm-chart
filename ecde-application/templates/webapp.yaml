@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-webapp
+spec:
+  replicas: {{ .Values.webapp.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}-webapp
+          image: {{ .Values.webapp.image }}:{{ .Values.webapp.tag }}
+          ports:
+            - containerPort: {{ .Values.webapp.port }}
+          env:
+            - name: WMS_SERVER
+              value: {{ .Values.webapp.env.wms-server }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
+            - name: API_BASE
+              value: {{ .Values.webapp.env.api-base }}:$(API_SERVICE_PORT_API_PORT)
+            - name: INDICATOR
+              value: {{ .Values.webapp.env.indicator }}
+          #   - name: PUBLIC_URL
+          #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/

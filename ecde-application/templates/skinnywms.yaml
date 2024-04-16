@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-skinnywms
+spec:
+  replicas: {{ .Values.skinny-wms.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}-skinnywms
+          image: {{ .Values.skinny-wms.image }}:{{ .Values.skinny-wms.tag }}
+          ports:
+            - containerPort: {{ .Values.skinny-wms.port }}
+          env:
+          - name: WMS_SERVER
+            value: {{ .Values.skinny-wms.env.wms-server }}
+          #   - name: PUBLIC_URL
+          #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/
+        volumeMounts:
+        - mountPath: {{ .Values.shared-pvc.path }}
+          name: {{ .Values.shared-pvc.name }}
+      volumes:
+      - name: {{ .Values.shared-pvc.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.shared-pvc.name }}
