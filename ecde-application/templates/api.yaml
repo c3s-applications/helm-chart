@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.name }}-api
 spec:
-  replicas: {{ .Values.api-service.replicas }}
+  replicas: {{ .Values.apiService.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -14,26 +14,26 @@ spec:
     spec:
       containers:
         - name: {{ .Values.name }}-api
-          image: {{ .Values.api-service.image }}:{{ .Values.api-service.tag }}
+          image: {{ .Values.apiService.image }}:{{ .Values.apiService.tag }}
           ports:
-            - containerPort: {{ .Values.api-service.port }}
+            - containerPort: {{ .Values.apiService.port }}
           env:
             - name: MODE
-              value: {{ .Values.api-service.env.mode }}
+              value: {{ .Values.apiService.env.mode }}
             - name: ALLOWED_ORIGIN
-              value: {{ .Values.api-service.env.allowed-origin }}:$(WEBAPP_SERVICE_PORT_WEBAPP_PORT)
+              value: {{ .Values.apiService.env.allowed-origin }}:$(ECDE_WEBAPP_SERVICE_PORT_WEBAPP_PORT)
             - name: WMS_SERVER
-              value: {{ .Values.api-service.env.wms-server }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
+              value: {{ .Values.apiService.env.wmsServer }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
             - name: WMS_DATA_DIR
-              value: {{ .Values.api-service.env.wms-data-dir }}
+              value: {{ .Values.apiService.env.wmsDataDir }}
             - name: WMS_STYLE_DIR
-              value: {{ .Values.api-service.env.wms-style-dir }}
+              value: {{ .Values.apiService.env.wmsStyleDir }}
           #   - name: PUBLIC_URL
           #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/
         volumeMounts:
-        - mountPath: {{ .Values.shared-pvc.path }}
-          name: {{ .Values.shared-pvc.name }}
+        - mountPath: {{ .Values.sharedPvc.path }}
+          name: {{ .Values.sharedPvc.name }}
       volumes:
-      - name: {{ .Values.shared-pvc.name }}
+      - name: {{ .Values.sharedPvc.name }}
         persistentVolumeClaim:
-          claimName: {{ .Values.shared-pvc.name }}
+          claimName: {{ .Values.sharedPvc.name }}

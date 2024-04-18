@@ -20,7 +20,7 @@ spec:
             path: {{ .Values.ingress.path }}(.*)
             backend:
               service:
-                name: {{ .Values.name }}
+                name: {{ .Values.name }}-webapp
                 port:
                   number: 80
   ingressClassName: {{ .values.ingress.ingressclass }}

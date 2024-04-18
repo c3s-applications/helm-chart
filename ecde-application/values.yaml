@@ -6,10 +6,10 @@ webapp:
   port: 80  # Port exposed by the application
   replicas: 1
   env:
-    wms-server: http://ecde-dev.copernicus-climate.eu/ecde-wms
-    api-base: http://ecde-dev.copernicus-climate.eu/ecde-wms
+    wmsServer: http://ecde-dev.copernicus-climate.eu/ecde-wms
+    apiBase: http://ecde-dev.copernicus-climate.eu/ecde-wms
     indicator: 05_tropical_nights
-api-service:
+apiService:
   image: eccr.ecmwf.int/c3s-applications/ecde-server  # image for application
   tag: latest  # image tag to use (this )
   port: 5000 # Port exposed by the application
@@ -17,19 +17,19 @@ api-service:
   env:
     mode: production
     allowed-origin:
-    wms-server: http://ecde-dev.copernicus-climate.eu/ecde-wms
-    wms-data-dir: /skinnywms/appdata
-    wms-style-dir: /skinnywms/styles
-skinny-wms:
+    wmsServer: http://ecde-dev.copernicus-climate.eu/ecde-wms
+    wmsDataDir: /skinnywms/appdata
+    wmsStyleDir: /skinnywms/styles
+skinnyWms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
   port: 5000  # Port exposed by the application
   replicas: 1
   env:
-    skinnywms-uwsgi-workers: $(SKINNYWMS_UWSGI_WORKERS:-4)
-    skinnywms-data-path: /skinnywms/appdata
-    magics-style-path: /skinnywms/styles
-shared-pvc:
+    skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
+    skinnywmsDataPath: /skinnywms/appdata
+    magicsStylePath: /skinnywms/styles
+sharedPvc:
   name: wms-data-volume
   storage: 10Gi
   storageclass: cinder-csi

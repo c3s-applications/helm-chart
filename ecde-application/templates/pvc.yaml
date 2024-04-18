@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.shared-pvc.name }}
+  name: {{ .Values.sharedPvc.name }}
 spec:
   accessModes:
   - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.shared-pvc.storage }}
-  storageClassName: {{ .Values.shared-pvc.storageclass }}
+      storage: {{ .Values.sharedPvc.storage }}
+  storageClassName: {{ .Values.sharedPvc.storageclass }}
