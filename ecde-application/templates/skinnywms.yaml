@@ -22,9 +22,9 @@ spec:
           #  value: {{ .Values.skinnyWms.env.wmsServer }}
           #   - name: PUBLIC_URL
           #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/
-        volumeMounts:
-        - mountPath: {{ .Values.sharedPvc.path }}
-          name: {{ .Values.sharedPvc.name }}
+          volumeMounts:
+          - mountPath: {{ .Values.sharedPvc.path }}
+            name: {{ .Values.sharedPvc.name }}
       volumes:
       - name: {{ .Values.sharedPvc.name }}
         persistentVolumeClaim:
