@@ -16,7 +16,7 @@ apiService:
   replicas: 1
   env:
     mode: production
-    allowed-origin:
+    allowedOrigin:
     wmsServer: http://ecde-dev.copernicus-climate.eu/ecde-wms
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles

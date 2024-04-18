@@ -21,7 +21,7 @@ spec:
             - name: MODE
               value: {{ .Values.apiService.env.mode }}
             - name: ALLOWED_ORIGIN
-              value: {{ .Values.apiService.env.allowed-origin }}:$(ECDE_WEBAPP_SERVICE_PORT_WEBAPP_PORT)
+              value: {{ .Values.apiService.env.allowedOrigin }}:$(ECDE_WEBAPP_SERVICE_PORT_WEBAPP_PORT)
             - name: WMS_SERVER
               value: {{ .Values.apiService.env.wmsServer }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
             - name: WMS_DATA_DIR

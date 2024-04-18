@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "ecde-application.name" -}}
+{{- define "ecde.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "ecde-application.fullname" -}}
+{{- define "ecde.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "ecde-application.chart" -}}
+{{- define "ecde.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "ecde-application.labels" -}}
-helm.sh/chart: {{ include "ecde-application.chart" . }}
-{{ include "ecde-application.selectorLabels" . }}
+{{- define "ecde.labels" -}}
+helm.sh/chart: {{ include "ecde.chart" . }}
+{{ include "ecde.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "ecde-application.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "ecde-application.name" . }}
+{{- define "ecde.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ecde.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "ecde-application.serviceAccountName" -}}
+{{- define "ecde.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "ecde-application.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ecde.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
