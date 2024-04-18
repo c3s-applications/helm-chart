@@ -42,5 +42,5 @@ ingress:
   path: /c3s-apps/ecde/
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
-  storageclass: nginx
+  ingressclass: nginx
   
