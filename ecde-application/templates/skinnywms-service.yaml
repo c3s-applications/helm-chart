@@ -9,4 +9,4 @@ spec:
   ports:
     - name: wms-port
       port: 5000
-      targetPort: {{ .Values.skinny-wms.port }}
+      targetPort: {{ .Values.skinnyWms.port }}
