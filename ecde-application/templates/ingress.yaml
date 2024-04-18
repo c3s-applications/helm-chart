@@ -23,5 +23,5 @@ spec:
                 name: {{ .Values.name }}-webapp
                 port:
                   number: 80
-  ingressClassName: {{ .values.ingress.ingressclass }}
+  ingressClassName: {{ .Values.ingress.ingressclass }}
 
