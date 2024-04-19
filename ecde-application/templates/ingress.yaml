@@ -24,7 +24,7 @@ spec:
                 port:
                   number: 5000
           - pathType: ImplementationSpecific
-            path: {{ .Values.ingress.path }}(.*)
+            path: {{ .Values.ingress.webappPath }}(.*)
             backend:
               service:
                 name: {{ .Values.name }}-webapp
