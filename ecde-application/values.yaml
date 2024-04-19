@@ -33,7 +33,7 @@ sharedPvc:
 # Values used for ingress control
 ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
-  hostname: ecds-dev.copernicus-climate.eu  
+  hostname: ecds-dev-cci2.copernicus-climate.eu  
   # Path to the application, this must be included in the env when building a JS application
   webappPath: /c3s-apps/ecde/
   apiPath: /c3s-apps/ecde/api/ 
