@@ -5,10 +5,6 @@ webapp:
   tag: latest  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
-  env:
-    wmsServer: http://ecde-dev.copernicus-climate.eu/ecde-wms
-    apiBase: http://ecde-dev.copernicus-climate.eu/ecde-wms
-    indicator: 05_tropical_nights
 apiService:
   image: eccr.ecmwf.int/c3s-applications/ecde-server  # image for application
   tag: latest  # image tag to use (this )
@@ -16,8 +12,8 @@ apiService:
   replicas: 1
   env:
     mode: production
-    allowedOrigin:
-    wmsServer: http://ecde-dev.copernicus-climate.eu/ecde-wms
+    allowedOrigin: http://ecds-dev-cci2.copernicus-climate.eu
+    wmsServer: http://ecds-dev-cci2.copernicus-climate.eu/ecde-wms
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 skinnyWms:
@@ -39,8 +35,9 @@ ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev.copernicus-climate.eu  
   # Path to the application, this must be included in the env when building a JS application
-  path: /c3s-apps/ecde/
+  webapp-path: /c3s-apps/ecde/
+  api-path: /c3s-apps/ecde-api/ 
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
-  ingressclass: nginx
+  ingressclass: nginx-dev
   

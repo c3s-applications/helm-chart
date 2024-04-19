@@ -8,5 +8,5 @@ spec:
   type: ClusterIP
   ports:
     - name: webapp-port
-      port: 8080
+      port: 80
       targetPort: {{ .Values.webapp.port }}
