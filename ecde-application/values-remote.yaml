@@ -11,8 +11,9 @@ apiService:
   port: 5000 # Port exposed by the application
   replicas: 1
   env:
-    rootPath: /c3s-apps/ecde/api
+    rootPath: http://localhost:5000
     mode: production
+    allowedOrigin: http://localhost:8080
     wmsServer: http://ecds-dev-cci2.copernicus-climate.eu/ecde-wms
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles

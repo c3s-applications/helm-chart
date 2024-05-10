@@ -8,4 +8,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.sharedPvc.storage }}
+  volumeName: {{ .Values.sharedPvc.pvName }}
   storageClassName: {{ .Values.sharedPvc.storageclass }}
