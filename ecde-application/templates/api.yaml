@@ -16,7 +16,7 @@ spec:
         - args:
           - bash
           - -c
-          - make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
+          - cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
           name: {{ .Values.name }}-api
           image: {{ .Values.apiService.image }}:{{ .Values.apiService.tag }}
           ports:

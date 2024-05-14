@@ -2,7 +2,7 @@
 name: ecde # Name of application
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
-  tag: latest  # image tag to use (this )
+  tag: test  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
 apiService:
@@ -11,19 +11,20 @@ apiService:
   port: 5000 # Port exposed by the application
   replicas: 1
   env:
-    rootPath: http://localhost:5000
+    rootPath: /
     mode: production
     allowedOrigin: http://localhost:8080
-    wmsServer: http://ecds-dev-cci2.copernicus-climate.eu/ecde-wms
+    wmsServer: http://localhost
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 skinnyWms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
-  port: 5000  # Port exposed by the application
-  replicas: 0
+  port: 5001  # Port exposed by the application
+  replicas: 1
   env:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
+    skinnywmsServer: localhost
     skinnywmsDataPath: /skinnywms/appdata
     magicsStylePath: /skinnywms/styles
 sharedPvc:
@@ -34,6 +35,7 @@ sharedPvc:
   path: /skinnywms
 # Values used for ingress control
 ingress:
+  enable: false
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev-cci2.copernicus-climate.eu  
   # Path to the application, this must be included in the env when building a JS application
