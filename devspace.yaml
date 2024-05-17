@@ -26,14 +26,14 @@ deployments:
           storageclass: nfs-csi
 
 dev:
-  #api-server:
-  #  imageSelector: eccr.ecmwf.int/c3s-applications/ecde-server
-  #  command: ['bash', '-c', 'cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH']
-  #  sync:
-  #  - path: '${PROJECT_PATH}/european-climate-data-explorer/:/src/ecde-server'
-  #    startContainer: true
-  #    onUpload:
-  #      restartContainer: true
+  api-server:
+    imageSelector: eccr.ecmwf.int/c3s-applications/ecde-server
+    command: ['bash', '-c', 'python3 ./european_climate_data_explorer/preload_wms.py && cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH']
+    sync:
+    - path: '${PROJECT_PATH}/european-climate-data-explorer/:/src/european-climate-data-explorer'
+      startContainer: true
+      onUpload:
+        restartContainer: true
 
   #webapp:
   #  imageSelector: eccr.ecmwf.int/c3s-applications/ecde-webapp
