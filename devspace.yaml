@@ -1,0 +1,44 @@
+version: v2beta1
+name: c3s-ecde-app-helm-deployment
+
+vars:
+  DEVSPACE_ENV_FILE: '.env'
+  PROJECT_PATH: '..'
+
+pipelines: 
+  deploy:
+    run: |-
+      create_deployments ecde-helm-chart
+      start_dev --all
+
+deployments:
+  ecde-helm-chart:
+    helm:
+      releaseName: ecde
+      chart:
+        name: ./ecde-application
+      valuesFiles:
+      - ./ecde-application/values-remote.yaml
+      values:
+        sharedPvc:
+          pvName: ${USER}-pv-wms
+          storage: 10Gi
+          storageclass: nfs-csi
+
+dev:
+  #api-server:
+  #  imageSelector: eccr.ecmwf.int/c3s-applications/ecde-server
+  #  command: ['bash', '-c', 'cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH']
+  #  sync:
+  #  - path: '${PROJECT_PATH}/european-climate-data-explorer/:/src/ecde-server'
+  #    startContainer: true
+  #    onUpload:
+  #      restartContainer: true
+
+  #webapp:
+  #  imageSelector: eccr.ecmwf.int/c3s-applications/ecde-webapp
+  #  sync:
+  #  - path: '${PROJECT_PATH}/european-climate-data-explorer/:/src/ecde-webapp'
+  #    startContainer: true
+  #    onUpload:
+  #      restartContainer: true

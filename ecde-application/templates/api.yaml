@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.name }}-api
 spec:
-  replicas: {{ .Values.apiService.replicas }}
+  replicas: {{ .Values.apiServer.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -18,22 +18,22 @@ spec:
           - -c
           - cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
           name: {{ .Values.name }}-api
-          image: {{ .Values.apiService.image }}:{{ .Values.apiService.tag }}
+          image: {{ .Values.apiServer.image }}:{{ .Values.apiServer.tag }}
           ports:
-            - containerPort: {{ .Values.apiService.port }}
+            - containerPort: {{ .Values.apiServer.port }}
           env:
             - name: ROOT_PATH
-              value: {{ .Values.apiService.env.rootPath }}
+              value: {{ .Values.apiServer.env.rootPath }}
             - name: MODE
-              value: {{ .Values.apiService.env.mode }}
+              value: {{ .Values.apiServer.env.mode }}
             - name: ALLOWED_ORIGIN
-              value: {{ .Values.apiService.env.allowedOrigin }}
+              value: {{ .Values.apiServer.env.allowedOrigin }}
             - name: WMS_SERVER
-              value: {{ .Values.apiService.env.wmsServer }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
+              value: {{ .Values.apiServer.env.wmsServer }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
             - name: WMS_DATA_DIR
-              value: {{ .Values.apiService.env.wmsDataDir }}
+              value: {{ .Values.apiServer.env.wmsDataDir }}
             - name: WMS_STYLE_DIR
-              value: {{ .Values.apiService.env.wmsStyleDir }}
+              value: {{ .Values.apiServer.env.wmsStyleDir }}
           #   - name: PUBLIC_URL
           #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/
           volumeMounts:

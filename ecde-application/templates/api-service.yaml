@@ -8,5 +8,5 @@ spec:
   type: ClusterIP
   ports:
     - name: api-port
-      port: {{ .Values.apiService.port }}
-      targetPort: {{ .Values.apiService.port }}
+      port: {{ .Values.apiServer.port }}
+      targetPort: {{ .Values.apiServer.port }}

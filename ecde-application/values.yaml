@@ -5,7 +5,7 @@ webapp:
   tag: latest  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
-apiService:
+apiServer:
   image: eccr.ecmwf.int/c3s-applications/ecde-server  # image for application
   tag: latest  # image tag to use (this )
   port: 5000 # Port exposed by the application
