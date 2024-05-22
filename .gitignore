@@ -5,5 +5,7 @@ kubeconfig*.yaml
 kubeconfig*.yml
 kubeconfig*.conf
 
+.env
+
 cache.yaml
 default.log

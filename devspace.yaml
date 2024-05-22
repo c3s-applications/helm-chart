@@ -24,6 +24,10 @@ deployments:
           pvName: ${USER}-pv-wms
           storage: 10Gi
           storageclass: nfs-csi
+        apiServer:
+          port: ${APISERVER_PORT}
+        skinnyWms:
+          port: ${SKINNYWMS_PORT}
 
 dev:
   api-server:

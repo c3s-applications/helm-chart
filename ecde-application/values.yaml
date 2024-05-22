@@ -13,14 +13,14 @@ apiServer:
   env:
     rootPath: /c3s-apps/ecde/api
     mode: production
-    wmsServer: http://ecds-dev-cci2.copernicus-climate.eu/ecde-wms
+    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/ecde-wms
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 skinnyWms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
   port: 5000  # Port exposed by the application
-  replicas: 0
+  replicas: 1
   env:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
     skinnywmsDataPath: /skinnywms/appdata
@@ -35,11 +35,11 @@ sharedPvc:
 ingress:
   enable: true
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
-  hostname: ecds-dev-cci2.copernicus-climate.eu  
+  hostname: ecds-dev.bopen.compute.cci2.ecmwf.int  
   # Path to the application, this must be included in the env when building a JS application
   webappPath: /c3s-apps/ecde/
   apiPath: /c3s-apps/ecde/api/ 
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
-  ingressclass: nginx-dev
+  ingressclass: nginx-c3s
   
