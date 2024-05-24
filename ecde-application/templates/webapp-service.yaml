@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.name }}-webapp
 spec:
   selector:
-    app: {{ .Values.name }}
+    component: webapp
   type: ClusterIP
   ports:
     - name: webapp-port

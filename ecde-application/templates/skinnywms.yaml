@@ -6,10 +6,12 @@ spec:
   replicas: {{ .Values.skinnyWms.replicas }}
   selector:
     matchLabels:
+      component: skinnywms
       app: {{ .Values.name }}
   template:
     metadata:
       labels:
+        component: skinnywms
         app: {{ .Values.name }}
     spec:
       containers:

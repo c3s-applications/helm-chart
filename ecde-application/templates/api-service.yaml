@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.name }}-api
 spec:
   selector:
-    app: {{ .Values.name }}
+    component: api
   type: ClusterIP
   ports:
     - name: api-port

@@ -6,10 +6,12 @@ spec:
   replicas: {{ .Values.webapp.replicas }}
   selector:
     matchLabels:
+      component: webapp
       app: {{ .Values.name }}
   template:
     metadata:
       labels:
+        component: webapp
         app: {{ .Values.name }}
     spec:
       containers:

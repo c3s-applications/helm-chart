@@ -4,7 +4,7 @@ metadata:
   name: skinny-wms
 spec:
   selector:
-    app: {{ .Values.name }}
+    component: skinnywms
   type: ClusterIP
   ports:
     - name: wms-port
