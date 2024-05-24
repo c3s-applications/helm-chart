@@ -13,7 +13,7 @@ apiServer:
   env:
     rootPath: /c3s-apps/ecde-api
     mode: production
-    wmsServer: http://ecds-dev-cci2.copernicus-climate.eu/ecde-wms
+    wmsServer: http://ecds-dev-cci2.copernicus-climate.eu/c3s-apps/ecde/wms
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 skinnyWms:
@@ -37,8 +37,9 @@ ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev-cci2.copernicus-climate.eu  
   # Path to the application, this must be included in the env when building a JS application
-  webappPath: /c3s-apps/european-climate-data-explorer/
-  apiPath: /c3s-apps/ecde-api/ 
+  webappPath: /c3s-apps/ecde/
+  apiPath: /c3s-apps/ecde/api/ 
+  wmsPath: /c3s-apps/ecde/wms/ 
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
   ingressclass: nginx-dev

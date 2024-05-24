@@ -26,6 +26,13 @@ spec:
                 port:
                   number: 5000
           - pathType: ImplementationSpecific
+            path: {{ .Values.ingress.wmsPath }}(.*)
+            backend:
+              service:
+                name: {{ .Values.name }}-wms
+                port:
+                  number: 5000
+          - pathType: ImplementationSpecific
             path: {{ .Values.ingress.webappPath }}(.*)
             backend:
               service:
