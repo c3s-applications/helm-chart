@@ -33,13 +33,11 @@ spec:
               value: {{ .Values.apiServer.env.allowedOrigin }}
             {{- end }}
             - name: WMS_SERVER
-              value: {{ .Values.apiServer.env.wmsServer }}:$(SKINNY_WMS_SERVICE_PORT_WMS_PORT)
+              value: {{ .Values.apiServer.env.wmsServer }}:$(ECDE_WMS_SERVICE_PORT_WMS_PORT)
             - name: WMS_DATA_DIR
               value: {{ .Values.apiServer.env.wmsDataDir }}
             - name: WMS_STYLE_DIR
               value: {{ .Values.apiServer.env.wmsStyleDir }}
-          #   - name: PUBLIC_URL
-          #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/
           volumeMounts:
           - mountPath: {{ .Values.sharedPvc.path }}
             name: {{ .Values.sharedPvc.name }}

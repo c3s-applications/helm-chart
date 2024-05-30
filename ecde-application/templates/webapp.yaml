@@ -19,6 +19,3 @@ spec:
           image: {{ .Values.webapp.image }}:{{ .Values.webapp.tag }}
           ports:
             - containerPort: {{ .Values.webapp.port }}
-          # env:
-          #   - name: PUBLIC_URL
-          #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/

@@ -2,7 +2,7 @@
 name: ecde # Name of application
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
-  tag: latest  # image tag to use (this )
+  tag: ecde-284  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
 apiServer:
@@ -11,7 +11,7 @@ apiServer:
   port: 5000 # Port exposed by the application
   replicas: 1
   env:
-    rootPath: /c3s-apps/ecde-api
+    rootPath: /c3s-apps/ecde/api
     mode: production
     wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
     wmsDataDir: /skinnywms/appdata
