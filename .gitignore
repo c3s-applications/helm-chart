@@ -1,9 +1,9 @@
 *.tgz
 *.log
 
-kubeconfig*.yaml
-kubeconfig*.yml
-kubeconfig*.conf
+*kubeconfig*.yaml
+*kubeconfig*.yml
+*kubeconfig*.conf
 
 .env
 env
