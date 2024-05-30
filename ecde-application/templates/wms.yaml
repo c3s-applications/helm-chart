@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}-skinnywms
+  name: {{ .Values.name }}-wms
 spec:
-  replicas: {{ .Values.skinnyWms.replicas }}
+  replicas: {{ .Values.wms.replicas }}
   selector:
     matchLabels:
-      component: skinnywms
+      component: wms
       app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        component: skinnywms
+        component: wms
         app: {{ .Values.name }}
     spec:
       containers:
-        - name: {{ .Values.name }}-skinnywms
+        - name: {{ .Values.name }}-wms
           args:
           - bash
           - -c
           - uwsgi --http localhost:$WMS_PORT --master --mount /=skinnywms.wmssvr:application --env SKINNYWMS_DATA_PATH=./$WMS_DATA --env MAGICS_STYLE_PATH=./$WMS_STYLES --buffer-size=32768
-          image: {{ .Values.skinnyWms.image }}:{{ .Values.skinnyWms.tag }}
+          image: {{ .Values.wms.image }}:{{ .Values.wms.tag }}
           ports:
-            - containerPort: {{ .Values.skinnyWms.port }}
+            - containerPort: {{ .Values.wms.port }}
           env:
           - name: WMS_PORT
             value: $(ECDE_WMS_SERVICE_PORT_WMS_PORT)

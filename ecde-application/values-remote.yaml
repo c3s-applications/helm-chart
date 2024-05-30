@@ -14,7 +14,7 @@ apiServer:
     rootPath: /
     mode: production
     allowedOrigin: http://localhost:8080
-skinnyWms:
+wms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
   port: 5001  # Port exposed by the application

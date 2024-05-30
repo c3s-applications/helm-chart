@@ -4,9 +4,9 @@ metadata:
   name: {{ .Values.name }}-wms
 spec:
   selector:
-    component: skinnywms
+    component: wms
   type: ClusterIP
   ports:
     - name: wms-port
-      port: {{ .Values.skinnyWms.port }}
-      targetPort: {{ .Values.skinnyWms.port }}
+      port: {{ .Values.wms.port }}
+      targetPort: {{ .Values.wms.port }}
