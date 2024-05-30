@@ -33,11 +33,11 @@ spec:
               value: {{ .Values.apiServer.env.allowedOrigin }}
             {{- end }}
             - name: WMS_SERVER
-              value: {{ .Values.apiServer.env.wmsServer }}:$(ECDE_WMS_SERVICE_PORT_WMS_PORT)
+              value: {{ .Values.commonWms.env.wmsServer }}
             - name: WMS_DATA_DIR
-              value: {{ .Values.apiServer.env.wmsDataDir }}
+              value: {{ .Values.commonWms.env.wmsDataDir }}
             - name: WMS_STYLE_DIR
-              value: {{ .Values.apiServer.env.wmsStyleDir }}
+              value: {{ .Values.commonWms.env.wmsStyleDir }}
           volumeMounts:
           - mountPath: {{ .Values.sharedPvc.path }}
             name: {{ .Values.sharedPvc.name }}

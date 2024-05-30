@@ -2,7 +2,7 @@
 name: ecde # Name of application
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
-  tag: ecde-284  # image tag to use (this )
+  tag: latest  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
 apiServer:
@@ -13,9 +13,6 @@ apiServer:
   env:
     rootPath: /c3s-apps/ecde/api
     mode: production
-    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
-    wmsDataDir: /skinnywms/appdata
-    wmsStyleDir: /skinnywms/styles
 skinnyWms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
@@ -23,8 +20,11 @@ skinnyWms:
   replicas: 1
   env:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
-    skinnywmsDataPath: /skinnywms/appdata
-    magicsStylePath: /skinnywms/styles
+commonWms:
+  env:
+    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
+    wmsDataDir: /skinnywms/appdata
+    wmsStyleDir: /skinnywms/styles
 sharedPvc:
   name: wms-data-volume
   pvName: pv-wms

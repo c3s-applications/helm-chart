@@ -25,11 +25,11 @@ spec:
             - containerPort: {{ .Values.skinnyWms.port }}
           env:
           - name: WMS_SERVER
-            value: {{ .Values.skinnyWms.env.skinnywmsServer }}:$(ECDE_WMS_SERVICE_PORT_WMS_PORT)
+            value: {{ .Values.commonWms.env.wmsServer }}:$(ECDE_WMS_SERVICE_PORT_WMS_PORT)
           - name: WMS_DATA
-            value: {{ .Values.skinnyWms.env.skinnywmsDataPath }}
+            value: {{ .Values.commonWms.env.wmsDataDir }}
           - name: WMS_STYLES
-            value: {{ .Values.skinnyWms.env.magicsStylePath }}
+            value: {{ .Values.commonWms.env.wmsStyleDir }}
           volumeMounts:
           - mountPath: {{ .Values.sharedPvc.path }}
             name: {{ .Values.sharedPvc.name }}

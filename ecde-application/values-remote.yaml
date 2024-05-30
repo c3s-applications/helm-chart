@@ -14,9 +14,6 @@ apiServer:
     rootPath: /
     mode: production
     allowedOrigin: http://localhost:8080
-    wmsServer: http://localhost
-    wmsDataDir: /skinnywms/appdata
-    wmsStyleDir: /skinnywms/styles
 skinnyWms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
@@ -24,9 +21,11 @@ skinnyWms:
   replicas: 1
   env:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
-    skinnywmsServer: localhost
-    skinnywmsDataPath: /skinnywms/appdata
-    magicsStylePath: /skinnywms/styles
+commonWms:
+  env:
+    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
+    wmsDataDir: /skinnywms/appdata
+    wmsStyleDir: /skinnywms/styles
 sharedPvc:
   name: wms-data-volume
   pvName: pv-wms
@@ -41,6 +40,7 @@ ingress:
   # Path to the application, this must be included in the env when building a JS application
   webappPath: /c3s-apps/ecde/
   apiPath: /c3s-apps/ecde/api/ 
+  wmsPath: /c3s-apps/ecde/wms/ 
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
   ingressclass: nginx-dev
