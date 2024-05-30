@@ -12,7 +12,7 @@ apiServer:
   port: 5000 # Port exposed by the application
   replicas: 1
   env:
-    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
+    wmsServer: https://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
     rootPath: /c3s-apps/ecde/api
     mode: production
 wms:
