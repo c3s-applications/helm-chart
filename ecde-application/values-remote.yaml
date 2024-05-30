@@ -1,5 +1,6 @@
 # Name of application
 name: ecde # Name of application
+localDevelopment: true
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
   tag: test  # image tag to use (this )
@@ -12,6 +13,7 @@ apiServer:
   replicas: 1
   env:
     rootPath: /
+    wmsServer: http://localhost
     mode: production
     allowedOrigin: http://localhost:8080
 wms:
@@ -23,7 +25,6 @@ wms:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
 commonWms:
   env:
-    wmsServer: http://localhost
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 sharedPvc:

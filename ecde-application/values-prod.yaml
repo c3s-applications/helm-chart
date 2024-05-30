@@ -1,5 +1,6 @@
 # Name of application
 name: ecde # Name of application
+localDevelopment: false
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
   tag: latest  # image tag to use (this )
@@ -11,6 +12,7 @@ apiServer:
   port: 5000 # Port exposed by the application
   replicas: 1
   env:
+    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
     rootPath: /c3s-apps/ecde/api
     mode: production
 wms:
@@ -22,7 +24,6 @@ wms:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
 commonWms:
   env:
-    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 sharedPvc:

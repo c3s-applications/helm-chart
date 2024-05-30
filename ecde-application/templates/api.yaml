@@ -33,7 +33,7 @@ spec:
               value: {{ .Values.apiServer.env.allowedOrigin }}
             {{- end }}
             - name: WMS_SERVER
-              value: {{ .Values.commonWms.env.wmsServer }}
+              value: {{ if .Values.localDevelopment }}{{ .Values.apiServer.env.wmsServer }}:$(ECDE_WMS_SERVICE_PORT_WMS_PORT){{ else }}{{ .Values.apiServer.env.wmsServer }}{{ end }}
             - name: WMS_DATA_DIR
               value: {{ .Values.commonWms.env.wmsDataDir }}
             - name: WMS_STYLE_DIR
