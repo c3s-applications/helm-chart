@@ -12,3 +12,5 @@ env
 
 cache.yaml
 default.log
+
+*secret*.yaml
