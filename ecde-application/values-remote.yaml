@@ -23,7 +23,7 @@ skinnyWms:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
 commonWms:
   env:
-    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
+    wmsServer: http://localhost
     wmsDataDir: /skinnywms/appdata
     wmsStyleDir: /skinnywms/styles
 sharedPvc:
