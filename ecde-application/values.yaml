@@ -3,7 +3,7 @@ name: ecde # Name of application
 localDevelopment: false
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
-  tag: latest # image tag to use (this )
+  tag: ecde-284 # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
 apiServer:
@@ -35,6 +35,12 @@ sharedPvc:
 # Values used for ingress control
 ingress:
   enable: true
+  # Cluster issuer to use for SSL certificates
+  clusterIssuer: letsencrypt-c3s
+  # Issue temporary certificate
+  issueTemporaryCertificate: true
+  # Use ACME for certificate issuance
+  acme: true
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev.bopen.compute.cci2.ecmwf.int  
   # Path to the application, this must be included in the env when building a JS application
@@ -42,6 +48,6 @@ ingress:
   apiPath: /c3s-apps/ecde/api/ 
   wmsPath: /c3s-apps/ecde/wms/ 
   # SSL certificate secret name:
-  secretName: star.copernicus-climate.eu
+  secretName: cert-manager-c3s-cert
   ingressclass: nginx-c3s
   
