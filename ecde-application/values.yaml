@@ -38,9 +38,9 @@ ingress:
   # Cluster issuer to use for SSL certificates
   clusterIssuer: letsencrypt-c3s
   # Issue temporary certificate
-  issueTemporaryCertificate: true
+  issueTemporaryCertificate: false
   # Use ACME for certificate issuance
-  acme: true
+  acme: false
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev.bopen.compute.cci2.ecmwf.int  
   # Path to the application, this must be included in the env when building a JS application

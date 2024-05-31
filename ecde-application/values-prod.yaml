@@ -19,7 +19,7 @@ wms:
   image: ecmwf/skinnywms  # image for application
   tag: 0.10.0  # image tag to use (this )
   port: 5000  # Port exposed by the application
-  replicas: 1
+  replicas: 0
   env:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
 commonWms:
