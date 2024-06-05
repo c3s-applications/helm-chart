@@ -8,7 +8,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.sharedPvc.storage }}
-  {{- if .Values.sharedPvc.pvName}}
+  {{- if .Values.sharedPvc.pvName }}
   volumeName: {{ .Values.sharedPvc.pvName }}
   {{- end }}
   storageClassName: {{ .Values.sharedPvc.storageclass }}
