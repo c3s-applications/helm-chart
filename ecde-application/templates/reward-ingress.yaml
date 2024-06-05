@@ -1,10 +1,18 @@
-{{- if .Values.ingress.acme }}
+{{- if .Values.ingress.certManagerCertificateRequest }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-c3s
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
+    {{- if .Values.ingress.issueTemporaryCertificate }}
+    cert-manager.io/issue-temporary-certificate: "true"
+    {{- end }}
+    {{- if .Values.ingress.acme }}
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    {{- end }}
+    {{- if .Values.ingress.disableSslRedirect }}
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    {{- end }}
   name: {{ .Values.name }}-solver
 spec:
   ingressClassName: {{ .Values.ingress.ingressclass }}
@@ -18,7 +26,7 @@ spec:
             port:
               number: 80
         path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
   tls:
   - hosts:
     - {{ .Values.ingress.hostname }}

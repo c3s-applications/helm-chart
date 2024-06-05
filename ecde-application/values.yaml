@@ -12,7 +12,7 @@ apiServer:
   port: 5000 # Port exposed by the application
   replicas: 1
   env:
-    wmsServer: http://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
+    wmsServer: https://ecds-dev.bopen.compute.cci2.ecmwf.int/c3s-apps/ecde/wms
     rootPath: /c3s-apps/ecde/api
     mode: production
 wms:
@@ -35,12 +35,6 @@ sharedPvc:
 # Values used for ingress control
 ingress:
   enable: true
-  # Cluster issuer to use for SSL certificates
-  clusterIssuer: letsencrypt-c3s
-  # Issue temporary certificate
-  issueTemporaryCertificate: false
-  # Use ACME for certificate issuance
-  acme: true
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev.bopen.compute.cci2.ecmwf.int  
   # Path to the application, this must be included in the env when building a JS application
@@ -50,4 +44,11 @@ ingress:
   # SSL certificate secret name:
   secretName: cert-manager-c3s-cert
   ingressclass: nginx-c3s
-  
+
+  # set certManagerCertificateRequest to "true" and certManager parameters to use cert-manager and acme challenge
+  certManagerCertificateRequest: true
+  certManager:
+    clusterIssuer: letsencrypt-c3s # Cluster issuer to use for SSL certificates
+    issueTemporaryCertificate: false # Set to true to issue a temporary certificate
+    acme: true # Set to true to use ACME for certificate issuance
+    disableSslRedirect: false # Set to true to disable SSL redirect
