@@ -38,7 +38,7 @@ ingress:
   # Cluster issuer to use for SSL certificates
   clusterIssuer: letsencrypt-c3s
   # Issue temporary certificate
-  issueTemporaryCertificate: true
+  issueTemporaryCertificate: false
   # Use ACME for certificate issuance
   acme: true
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
