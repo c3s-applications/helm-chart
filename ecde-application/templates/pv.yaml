@@ -1,3 +1,4 @@
+{{- if .Values.sharedPvc.pvName }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -17,7 +18,8 @@ spec:
     driver: nfs.csi.k8s.io
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: nfs-server.nfs-server.svc.cluster.local/share##
+    volumeHandle: {{ .Values.sharedPvc.nfsServerUrl }}/share##
     volumeAttributes:
-      server: nfs-server.nfs-server.svc.cluster.local
+      server: {{ .Values.sharedPvc.nfsServerUrl }}
       share: /
+{{- end }}
