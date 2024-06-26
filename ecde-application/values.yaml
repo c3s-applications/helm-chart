@@ -3,7 +3,7 @@ name: ecde # Name of application
 localDevelopment: false
 webapp:
   image: eccr.ecmwf.int/c3s-applications/ecde-webapp  # image for application
-  tag: ecde-284 # image tag to use (this )
+  tag: latest # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
 apiServer:
