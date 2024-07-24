@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-api
+spec:
+  replicas: {{ .Values.apiServer.replicas }}
+  selector:
+    matchLabels:
+      component: api
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        component: api
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - args:
+          - bash
+          - -c
+          - cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
+          name: {{ .Values.name }}-api
+          image: {{ .Values.apiServer.image }}:{{ .Values.apiServer.tag }}
+          ports:
+            - containerPort: {{ .Values.apiServer.port }}
+          env:
+            - name: ROOT_PATH
+              value: {{ .Values.apiServer.env.rootPath }}
+            - name: MODE
+              value: {{ .Values.apiServer.env.mode }}
+            {{- if .Values.apiServer.env.allowedOrigin }}
+            - name: ALLOWED_ORIGIN
+              value: {{ .Values.apiServer.env.allowedOrigin }}
+            {{- end }}
+            - name: WMS_SERVER
+              value: {{ if .Values.localDevelopment }}{{ .Values.apiServer.env.wmsServer }}:$(ECDE_WMS_SERVICE_PORT_WMS_PORT){{ else }}{{ .Values.apiServer.env.wmsServer }}{{ end }}
+            - name: WMS_DATA_DIR
+              value: {{ .Values.commonWms.env.wmsDataDir }}
+            - name: WMS_STYLE_DIR
+              value: {{ .Values.commonWms.env.wmsStyleDir }}
+          volumeMounts:
+          - mountPath: {{ .Values.sharedPvc.path }}
+            name: {{ .Values.sharedPvc.name }}
+      volumes:
+      - name: {{ .Values.sharedPvc.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.sharedPvc.name }}
