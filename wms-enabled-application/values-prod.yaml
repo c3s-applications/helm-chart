@@ -29,7 +29,7 @@ commonWms:
 sharedPvc:
   name: wms-data-volume
   storage: 10Gi
-  storageclass: cinder-csi
+  storageclass: nfs-csi
   path: /skinnywms
 # Values used for ingress control
 ingress:
