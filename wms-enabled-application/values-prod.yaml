@@ -30,6 +30,7 @@ sharedPvc:
   name: wms-data-volume
   storage: 10Gi
   storageclass: nfs-csi
+  nfsServerUrl: nfs-server.nfs-server.svc.cluster.local
   path: /skinnywms
 # Values used for ingress control
 ingress:
