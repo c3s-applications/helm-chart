@@ -18,7 +18,7 @@ spec:
         - args:
           - bash
           - -c
-          - cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
+          - cp -r ./european_climate_data_explorer/skinnywms/* /skinnywms/ && python3 european_climate_data_explorer/preload_wms.py && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
           name: {{ .Values.name }}-api
           image: {{ .Values.apiServer.image }}:{{ .Values.apiServer.tag }}
           ports:
