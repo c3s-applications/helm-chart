@@ -47,9 +47,9 @@ ingress:
   ingressclass: nginx-c3s
 
   # set certManagerCertificateRequest to "true" and certManager parameters to use cert-manager and acme challenge
-  certManagerCertificateRequest: true
-  certManager:
-    clusterIssuer: letsencrypt-c3s # Cluster issuer to use for SSL certificates
-    issueTemporaryCertificate: false # Set to true to issue a temporary certificate
-    acme: true # Set to true to use ACME for certificate issuance
-    disableSslRedirect: false # Set to true to disable SSL redirect
+  # certManagerCertificateRequest: true
+  # certManager:
+  #   clusterIssuer: letsencrypt-c3s # Cluster issuer to use for SSL certificates
+  #   issueTemporaryCertificate: false # Set to true to issue a temporary certificate
+  #   acme: true # Set to true to use ACME for certificate issuance
+  #   disableSslRedirect: false # Set to true to disable SSL redirect
