@@ -24,4 +24,4 @@ spec:
                 name: {{ .Values.name }}
                 port:
                   number: 80
-  ingressClassName: {{ .values.ingress.ingressclass }}
+  ingressClassName: {{ .Values.ingress.ingressclass }}
