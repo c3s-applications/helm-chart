@@ -1,0 +1,27 @@
+{{- if .Values.sharedPvc }}
+{{- if .Values.sharedPvc.pvName }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
+  name: {{ .Values.sharedPvc.pvName }}
+spec:
+  capacity:
+    storage: {{ .Values.sharedPvc.storage }}
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.sharedPvc.storageclass }}
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
+    # make sure this value is unique for every share in the cluster
+    volumeHandle: {{ .Values.sharedPvc.nfsServerUrl }}/share##
+    volumeAttributes:
+      server: {{ .Values.sharedPvc.nfsServerUrl }}
+      share: /
+{{- end }}
+{{- end }}

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-webapp
+spec:
+  replicas: {{ .Values.webapp.replicas }}
+  selector:
+    matchLabels:
+      component: webapp
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        component: webapp
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}-webapp
+          image: {{ .Values.webapp.image }}:{{ .Values.webapp.tag }}
+          ports:
+            - containerPort: {{ .Values.webapp.port }}
