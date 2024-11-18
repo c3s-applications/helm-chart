@@ -10,8 +10,7 @@ ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
   hostname: ecds-dev.copernicus-climate.eu  
   # Path to the application, this must be included in the env when building a JS application
-  path: /c3s-apps/hello-world
+  path: /c3s-apps/hello-world/
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
-  ingressclass: nginx
   
