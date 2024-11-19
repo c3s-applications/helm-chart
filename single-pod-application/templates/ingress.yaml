@@ -4,6 +4,7 @@ metadata:
   name: {{ .Values.name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/configuration-snippet: rewrite ^([^.]*[^/])$ $1/ permanent;
     nginx.org/proxy-buffer-size: 128K
     nginx.org/proxy-buffers: 4 256K
     nginx.org/proxy-busy-buffers-size: 256K
@@ -17,7 +18,14 @@ spec:
       http:
         paths:
           - pathType: ImplementationSpecific
-            path: {{ .Values.ingress.path }}(.*)
+            path: {{ .Values.ingress.path }}
+            backend:
+              service:
+                name: {{ .Values.name }}
+                port:
+                  number: 80
+          - pathType: ImplementationSpecific
+            path: {{ .Values.ingress.path }}/(.*)
             backend:
               service:
                 name: {{ .Values.name }}
