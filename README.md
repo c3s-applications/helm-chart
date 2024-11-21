@@ -16,14 +16,14 @@ To create a package for the helm chart use the following command:
 helm package single-pod-application
 ```
 
-This will create a .tgz file locally. You must then upload the .tgz file to [Harbor using the web-interface](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/managing-helm-charts/). The command line interface is not ideal, and this is not a frequently run command to justify programatic updates.
+This will create a .tgz file locally, which you must then upload to [Harbor](eccr.ecmwf.int). This can be via [the Harbor web-interface](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/managing-helm-charts/), or via the [command line utilities](https://goharbor.io/docs/2.12.0/working-with-projects/working-with-oci/working-with-helm-oci-charts/).
 
 
 
-## Harbor
+## Using the helm chart
 
-This chart is accesible via Harbor, at https://eccr.ecmwf.int, it is in the c3s-applications projects, and the
-chart is called c3s-applications.
+The chart is now accesible via Harbor, at https://eccr.ecmwf.int, it is in the 
+c3s-applications projects, and the chart is called `single-pod-application`.
 
 If you have adequate credentials on your machine you can add the repo to your helm using:
 
@@ -31,7 +31,7 @@ If you have adequate credentials on your machine you can add the repo to your he
 helm repo add c3s-applications https://eccr.ecmwf.int/chartrepo/c3s-applications
 ```
 
-You can now install an app with this Chart with your own values as:
+You can now install an app using this Chart with your own values as:
 
 ```
 helm install c3s-applications/single-pod-application --values path/to/values.yaml
