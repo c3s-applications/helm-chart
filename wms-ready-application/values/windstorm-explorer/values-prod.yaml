@@ -2,23 +2,24 @@
 name: windstorm-explorer # Name of application
 localDevelopment: false
 webapp:
-  image: eccr.ecmwf.int/c3s-applications/windstorm-explorer-webapp  # image for application
+  image: eccr.ecmwf.int/c3s-applications/windstorm-explorer-webapp # image for application
   tag: latest # image tag to use (this )
-  port: 80  # Port exposed by the application
+  port: 80 # Port exposed by the application
   replicas: 1
 apiServer:
-  image: eccr.ecmwf.int/c3s-applications/windstorm-explorer-server  # image for application
-  tag: latest  # image tag to use (this )
+  image: eccr.ecmwf.int/c3s-applications/windstorm-explorer-server # image for application
+  tag: latest # image tag to use (this )
   port: 5000 # Port exposed by the application
   replicas: 1
+  startupCommand: cp -r ./windstorm_explorer_app/skinnywms/* /skinnywms/ && python3 windstorm_explorer_app/preload_wms.py && make start-server API_HOST=0.0.0.0 ROOT_PATH=$ROOT_PATH
   env:
     wmsServer: https://apps.copernicus-climate.eu/c3s-apps/windstorm-explorer/wms
     rootPath: /c3s-apps/windstorm-explorer/api
     mode: production
 wms:
-  image: ecmwf/skinnywms  # image for application
-  tag: 0.10.0  # image tag to use (this )
-  port: 5000  # Port exposed by the application
+  image: ecmwf/skinnywms # image for application
+  tag: 0.10.0 # image tag to use (this )
+  port: 5000 # Port exposed by the application
   replicas: 1
   env:
     skinnywmsUwsgiWorkers: $(SKINNYWMS_UWSGI_WORKERS:-4)
@@ -40,8 +41,8 @@ ingress:
   hostname: apps.copernicus-climate.eu
   # Path to the application, this must be included in the env when building a JS application
   webappPath: /c3s-apps/windstorm-explorer/
-  apiPath: /c3s-apps/windstorm-explorer/api/ 
-  wmsPath: /c3s-apps/windstorm-explorer/wms/ 
+  apiPath: /c3s-apps/windstorm-explorer/api/
+  wmsPath: /c3s-apps/windstorm-explorer/wms/
   # SSL certificate secret name:
   secretName: star.copernicus-climate.eu
   ingressclass: nginx
