@@ -19,7 +19,7 @@ spec:
           args:
           - bash
           - -c
-          - while true; do if [ -f {{ .Values.commonWms.env.wmsDataDir }}/.completed.txt ]; then echo ".completed.txt found"; break; else echo "Waiting for .completed.txt creation..."; sleep 1; fi; done; echo "Verification succeeded!" && uwsgi --http 0.0.0.0:$WMS_PORT --master --mount /=skinnywms.wmssvr:application --env SKINNYWMS_DATA_PATH=./$WMS_DATA --env MAGICS_STYLE_PATH=./$WMS_STYLES
+          - while true; do if [ -f {{ .Values.commonWms.env.wmsDataDir }}/.completed.txt ]; then echo ".completed.txt found"; break; else echo "Waiting for .completed.txt creation..."; sleep 1; fi; done; echo "Verification succeeded!" && uwsgi --http 0.0.0.0:$WMS_PORT --master --mount /=skinnywms.wmssvr:application --env SKINNYWMS_DATA_PATH=$WMS_DATA --env MAGICS_STYLE_PATH=$WMS_STYLES
           image: {{ .Values.wms.image }}:{{ .Values.wms.tag }}
           ports:
             - containerPort: {{ .Values.wms.port }}
