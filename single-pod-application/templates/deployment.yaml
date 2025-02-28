@@ -17,6 +17,14 @@ spec:
           image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
           ports:
             - containerPort: {{ .Values.deployment.port }}
+          # resources:
+          #   requests:
+          #     memory: {{ .Values.deployment.resources.requests.memory }}
+          #     cpu: {{ .Values.deployment.resources.requests.cpu }}
+          #   limits:
+          #     memory: {{ .Values.deployment.resources.limits.memory }}
+          #     cpu: {{ .Values.deployment.resources.limits.cpu }}
+
           # env:
           #   - name: PUBLIC_URL
           #     value: https://ecds-dev.copernicus-climate.eu/c3s-apps/climate-pulse/

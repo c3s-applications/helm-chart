@@ -5,6 +5,13 @@ deployment:
   tag: latest  # image tag to use (this )
   port: 80  # Port exposed by the application
   replicas: 1
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "4Gi"
+      cpu: "2"
 # Values used for ingress control
 ingress:
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
