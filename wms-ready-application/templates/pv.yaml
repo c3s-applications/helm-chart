@@ -19,9 +19,9 @@ spec:
     driver: nfs.csi.k8s.io
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: {{ .Values.sharedPvc.nfsServerUrl }}/share##
+    volumeHandle: {{ .Values.sharedPvc.nfsServerUrl }}#{{ .Values.name }}
     volumeAttributes:
       server: {{ .Values.sharedPvc.nfsServerUrl }}
-      share: /
+      share: /{{ .Values.name }}
 {{- end }}
 {{- end }}
