@@ -29,7 +29,6 @@ commonWms:
     wmsStyleDir: /skinnywms/styles
 sharedPvc:
   name: wms-data-volume
-  pvName: pv-wms
   nfsServerUrl: nfs-server.nfs-server.svc.cluster.local
   storage: 10Gi
   storageclass: nfs-csi
@@ -38,11 +37,11 @@ sharedPvc:
 ingress:
   enable: true
   # Hostname where the app will be published, this must be mapped to the cluster described by the KUBECONFIG
-  hostname: ecds-dev.bopen.compute.cci2.ecmwf.int  
+  hostname: ecds-dev.bopen.compute.cci2.ecmwf.int
   # Path to the application, this must be included in the env when building a JS application
   webappPath: /c3s-apps/ecde/
-  apiPath: /c3s-apps/ecde/api/ 
-  wmsPath: /c3s-apps/ecde/wms/ 
+  apiPath: /c3s-apps/ecde/api/
+  wmsPath: /c3s-apps/ecde/wms/
   # SSL certificate secret name:
   secretName: cert-manager-c3s-cert
   ingressclass: nginx-c3s

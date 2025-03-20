@@ -4,13 +4,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.sharedPvc.name }}
 spec:
+  provisioner: nfs.csi.k8s.io
   accessModes:
   - ReadWriteMany
   resources:
     requests:
       storage: {{ .Values.sharedPvc.storage }}
-  {{- if .Values.sharedPvc.pvName }}
-  volumeName: {{ .Values.sharedPvc.pvName }}
-  {{- end }}
-  storageClassName: {{ .Values.sharedPvc.storageclass }}
+  storageClassName: "{{ .Values.sharedPvc.storageclass }}-{{ .Values.name }}"
 {{- end }}
