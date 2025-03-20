@@ -29,7 +29,6 @@ commonWms:
     wmsStyleDir: /skinnywms/styles
 sharedPvc:
   name: wms-data-volume
-  pvName: pv-wms-windstorm-explorer
   nfsServerUrl: nfs-server.nfs-server.svc.cluster.local
   storage: 10Gi
   storageclass: nfs-csi
